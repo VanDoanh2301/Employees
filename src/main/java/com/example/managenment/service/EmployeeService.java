@@ -1,6 +1,7 @@
 package com.example.managenment.service;
 
 import com.example.managenment.domain.Employee;
+import com.example.managenment.model.EmployeeDto;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -84,4 +85,21 @@ public interface EmployeeService {
     boolean existsByName(String name);
 
     boolean existsByEmail(String email);
+
+
+    Page<Employee> getByDepartmentId(Integer id, Pageable pageable);
+
+    Employee findByEmail(String email);
+
+    Employee getByName(String username);
+
+    Employee findId(Integer id);
+
+    void deleteId(Integer id);
+
+    void deleteByEmployeeId(int id);
+
+    Page<Employee> findByNameContaining(String name, Pageable pageable);
+
+//    Employee saveEmployee(EmployeeDto employeeDto);
 }

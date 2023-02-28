@@ -1,7 +1,10 @@
 package com.example.managenment.model;
 
 import com.example.managenment.domain.Department;
+import com.example.managenment.domain.Role;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,6 +19,8 @@ public class EmployeeDto {
     private String address;
 
     private Department department;
+
+    private List<Role> roles;
 
     private boolean edit=false;
 }

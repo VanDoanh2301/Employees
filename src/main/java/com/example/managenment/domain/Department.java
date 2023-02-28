@@ -1,13 +1,12 @@
 package com.example.managenment.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -20,7 +19,12 @@ public class Department {
 
     @Column(name = "short_Name",unique = true,columnDefinition = "nvarchar(100) not null")
     private  String shortName;
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
     private Collection<Employee> employees;
 
+    public Department(int departmentId, String name, String shortName) {
+        this.departmentId = departmentId;
+        this.name = name;
+        this.shortName = shortName;
+    }
 }

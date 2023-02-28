@@ -2,6 +2,7 @@ package com.example.managenment.service.impl;
 
 import com.example.managenment.domain.Employee;
 import com.example.managenment.repository.EmployeeRepository;
+import com.example.managenment.repository.RoleRepository;
 import com.example.managenment.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -20,6 +21,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepos;
+
+    @Autowired
+    private RoleRepository RoleRepo;
 
     @Override
     public void flush() {
@@ -187,6 +191,101 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public boolean existsByEmail(String email) {
         return employeeRepos.existsByEmail(email);
+    }
+
+
+    @Override
+    public Page<Employee> getByDepartmentId(Integer id, Pageable pageable) {
+        return employeeRepos.getByDepartmentId(id, pageable);
+
+    }
+//    @Override
+//    public Employee saveEmployee(EmployeeDto employeeDto) {
+//        List<String> roleDto = employeeDto.getRoles();
+//        List<Role> listRole = new ArrayList<>();
+//        roleDto.forEach(ro -> {
+//            switch (ro) {
+//                case "user": {
+//                    Role userRole = RoleRepo.findByName("USER");
+//                    if (userRole == null) {
+//                        userRole = new Role("USER");
+//                        RoleRepo.save(userRole);
+//                    }
+//                    listRole.add(userRole);
+//                    break;
+//                }
+//                case "manager": {
+//                    Role managerRole = RoleRepo.findByName("MANAGER");
+//                    if (managerRole == null) {
+//                        managerRole = new Role("MANAGER");
+//                        RoleRepo.save(managerRole);
+//                    }
+//                    listRole.add(managerRole);
+//                    break;
+//                }
+//                case "admin": {
+//                    Role managerRole = RoleRepo.findByName("ADMIN");
+//                    if (managerRole == null) {
+//                        managerRole = new Role("ADMIN");
+//                        RoleRepo.save(managerRole);
+//                    }
+//                    listRole.add(managerRole);
+//                    break;
+//                }
+//            }
+//        });
+//
+//        Employee employee = Employee.builder()
+//                .employeeId(employeeDto.getEmployeeId())
+//                .name(employeeDto.getName())
+//                .email(employeeDto.getEmail())
+//                .password(employeeDto.getPassword())
+//                .phone(employeeDto.getPhone())
+//                .department(employeeDto.getDepartment())
+//                .roles(listRole)
+//                .build();
+////         List<Role> roles = user.getRoles();
+////        Collection<Privilege> privileges = new ArrayList<>();
+////        privileges.add(privilege);
+////        privileges.add(privilege1);
+////        roles.forEach(role -> {
+////            role.setPrivileges(privileges);
+////        });
+//
+//        return employeeRepos.save(employee);
+//
+
+//    }
+
+
+    @Override
+    public Employee findByEmail(String email) {
+        return employeeRepos.findByEmail(email);
+    }
+
+    @Override
+    public Employee getByName(String username) {
+        return employeeRepos.getByName(username);
+    }
+
+    @Override
+    public Employee findId(Integer id) {
+        return employeeRepos.findId(id);
+    }
+
+    @Override
+    public void deleteId(Integer id) {
+        employeeRepos.deleteId(id);
+    }
+
+    @Override
+    public void deleteByEmployeeId(int id) {
+         employeeRepos.deleteByEmployeeId(id);
+    }
+
+    @Override
+    public Page<Employee> findByNameContaining(String name, Pageable pageable) {
+        return employeeRepos.findByNameContaining(name, pageable);
     }
 
 }

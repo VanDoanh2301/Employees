@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layout/main_layout}"
 >
 <head>
@@ -22,37 +22,64 @@
     </header>
     <section class="row">
         <div class="col-6 offset-3 mt-4">
-            <form th:action="@{/admin/departments/saveOrUpdate}" method="post" th:object="${department}" >
+            <form th:action="@{/admin/salaries/saveOrUpdate}" method="post" th:object="${salary}" >
                 <div class="card">
                     <div class="card-header">
-                        <h2>Add new Category</h2>
+                        <h2>Salary</h2>
                     </div>
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label >Department ID:</label>
-                            <input type="hidden" th:field="*{edit}" >
-                            <input type="text" th:field="*{departmentId}"
-                                   class="form-control"  id="departmentId" aria-describedby="departmentHid" placeholder="department">
-                            <small th:if="${#fields.hasErrors('departmentId')}" id="departmentHid" class="form-text text-muted">Department id is required</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="shortName">Name</label>
-                            <input type="text" th:field="*{shortName}"
-                                   class="form-control"  id="shortName" aria-describedby="shortnameHid" placeholder="Department Short Name">
+                            <label for="employee" th:text="${emp.name}"></label>
+                            <input type="text" th:field="*{employee}"  th:value="${emp.employeeId}"
+                                   class="form-control"  id="employee" aria-describedby="employeeHid" placeholder="">
                         </div>
 
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" th:field="*{name}"
-                                   class="form-control"  id="name" aria-describedby="nameHid" placeholder="Department Name">
+                            <label >Salary ID:</label>
+                            <input type="text" th:field="*{salaryId}"
+                                   class="form-control"  id="departmentId" aria-describedby="departmentHid" placeholder="department">
+                            <small th:if="${#fields.hasErrors('salaryId')}" id="salaryIdHid" class="form-text text-muted">Department id is required</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="count">Count</label>
+                            <input type="text" th:field="*{count}"
+                                   class="form-control"  id="count" aria-describedby="countHid" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bonus">Bonus</label>
+                            <input type="text" th:field="*{bonus}"
+                                   class="form-control"  id="bonus" aria-describedby="bonusHid" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="minus">Minus</label>
+                            <input type="text" th:field="*{minus}"
+                                   class="form-control"  id="minus" aria-describedby="minusHid" placeholder="">
                             <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
                         </div>
+
+                        <div class="form-group">
+                            <label for="month">Month</label>
+                            <input type="text" th:field="*{month}"
+                                   class="form-control"  id="month" aria-describedby="monthHid" placeholder="">
+                            <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <input type="text" th:field="*{year}"
+                                   class="form-control"  id="year" aria-describedby="yearHid" placeholder="">
+                            <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
+                        </div>
+
+
+
                     </div>
                     <div class="card-footer text-muted">
                         <button  class="btn btn-primary"><i class="fas fa-save"></i>
-                        <span th:if="${department.edit}">Update</span>
-                         <span th:unless="${department.edit}">Save</span>
+                         <span>Save</span>
                         </button>
                         <a th:href="@{/admin/departments}" class="btn btn-success">List Department</a>
                         <button type="reset"  class="btn btn-secondary">Reset</button>
@@ -64,7 +91,6 @@
     <footer class="row"></footer>
 </main>
 </article>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
