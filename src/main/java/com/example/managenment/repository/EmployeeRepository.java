@@ -13,4 +13,11 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     public  boolean existsByEmail(String email);
     @Query(value = "select *from employee where department_id=?1", nativeQuery = true)
     public List<Employee> getByDepartmentId(Integer id);
+
+    public Employee findByEmail(String email);
+
+    @Query("SELECT e FROM Employee e where e.name=?1")
+    Employee getByName(String username);
+    @Query("SELECT e FROM Employee e where e.employeeId=?1")
+    Employee findId(Integer id);
 }

@@ -3,6 +3,7 @@ package com.example.managenment.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -42,4 +43,7 @@ public class Employee {
             inverseJoinColumns = @JoinColumn(name = "role_Id")
     )
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "employee")
+    private Collection<Salary> salaries;
 }

@@ -9,6 +9,9 @@ import com.example.managenment.service.DepartmentService;
 import com.example.managenment.service.EmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,6 +35,10 @@ public class EmployeeController {
     @Autowired
     private RoleRepository roleRepos;
 
+    private PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @GetMapping("/add")
     public String add(Model model) {
         List<Department> departments=  departmentService.findAll();
@@ -41,22 +48,9 @@ public class EmployeeController {
         model.addAttribute("listRole",roles);
         return "admin/employees/addOrEdit";
     }
-//    @GetMapping("/edit/{employeeId}")
-//    public ModelAndView edit(ModelMap model, @PathVariable("employeeId") Integer employeeId) {
-//        Optional<Employee> op = employeeService.findById(employeeId);
-//        EmployeeDto employeeDto = new EmployeeDto();
-//        if(op.isPresent()) {
-//            Employee employee = op.get();
-//            BeanUtils.copyProperties(employee,employeeDto);
-//            employeeDto.setEdit(true);
-//            model.addAttribute("employee",employeeDto);
-//            return new ModelAndView("/admin/employees/addOrEdit",model);
-//        }
-//        model.addAttribute("message","Employee is null");
-//
-//        return new ModelAndView("forward:/admin/employees",model);
-//    }
 @GetMapping("/edit/{employeeId}")
+//@PreAuthorize("hasAnyAuthority('EDIT_EMPLOYEE')")
+
     public ModelAndView edit(ModelMap model, @PathVariable("employeeId") Integer employeeId) {
         Optional<Employee> op = employeeService.findById(employeeId);
         EmployeeDto employeeDto = new EmployeeDto();
@@ -89,6 +83,7 @@ public class EmployeeController {
             model.addAttribute("m","Email is variable");
             return new ModelAndView("/admin/employees/addOrEdit",model);
         }
+        employeeDto.setPassword(encoder().encode(employeeDto.getPassword()));
         Employee entity = new Employee();
         BeanUtils.copyProperties(employeeDto,entity);
         employeeService.save(entity);

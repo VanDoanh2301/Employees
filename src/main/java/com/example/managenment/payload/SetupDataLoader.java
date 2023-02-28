@@ -12,6 +12,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.naming.Name;
@@ -27,9 +29,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     private PrivilegeRepository privilegeRepo;
     @Autowired
     private EmployeeRepository userRepo;
-//    private PasswordEncoder encoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    private PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
     @Autowired
     private DepartmentRepository departmentRepo;
 
@@ -71,7 +73,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
                 .employeeId(1)
                 .name("Admin")
                 .email("Admin@gmail.com")
-                .password("123")
+                .password(encoder().encode("123"))
                 .phone(123)
                 .address("HA NOI")
                 .department(GD)

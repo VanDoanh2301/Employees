@@ -33,31 +33,21 @@
                         <thead class="thead-inverse">
                         <tr>
                             <th>STT</th>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Department</th>
-                            <th>Role</th>
+                            <th>count</th>
+                            <th>minus</th>
+                            <th>bonus</th>
+                            <th>total</th>
+
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="employee,state: ${employees}">
+                        <tr th:each="salary,state: ${salaries}">
                             <td th:text="${state.index}"></td>
-                            <td th:text="${employee.employeeId}"></td>
-                            <td th:text="${employee.name}"></td>
-                            <td th:text="${employee.email}"></td>
-                            <td th:text="${employee.phone}"></td>
-                            <td th:text="${employee.address}"></td>
-                            <td th:text="${employee.department.getName()}"></td>
-                            <td th:text="${employee.roles}"></td>
-                            <td>
-                                <a th:href="@{'/admin/departments/view' + ${employee.employeeId} }" class="btn btn-outline-info"><i class="fas fa-info    "></i></a>
-                                <a th:href="@{'/admin/employees/edit/' + ${employee.employeeId}}" class="btn btn-outline-warning"><i class="fas fa-edit    "></i></a>
-                                <a th:href="@{'/admin/employees/delete/' + ${employee.employeeId}}" class="btn btn-outline-danger"><i class="fas fa-recycle "></i></a>
-                            </td>
+                            <td th:text="${salary.count}"></td>
+                            <td th:text="${salary.minus}"></td>
+                            <td th:text="${salary.bonus}"></td>
+                            <td th:text="${salary.total}"></td>
                         </tr>
 
                         </tbody>
