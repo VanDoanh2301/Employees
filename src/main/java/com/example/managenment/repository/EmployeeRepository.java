@@ -1,7 +1,10 @@
 package com.example.managenment.repository;
 
+import com.example.managenment.domain.Department;
 import com.example.managenment.domain.Employee;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +17,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     public boolean existsByName(String name);
     public  boolean existsByEmail(String email);
     @Query(value = "select *from employee where department_id=?1", nativeQuery = true)
-    public List<Employee> getByDepartmentId(Integer id);
+    public Page<Employee> getByDepartmentId(Integer id , Pageable pageable);
 
     public Employee findByEmail(String email);
 
@@ -34,4 +37,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
      @Transactional
      public void deleteByEmployeeId(int id);
+
+    Page<Employee> findByNameContaining(String name, Pageable pageable);
+
 }

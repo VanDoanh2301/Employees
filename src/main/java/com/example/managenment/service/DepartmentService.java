@@ -46,7 +46,6 @@ public interface DepartmentService {
 
     public  boolean existsByName(String name);
 
-    List<Department> findByNameContaining(String name);
 
     Page<Department> findByNameContaining(String name, Pageable pageable);
 

@@ -20,6 +20,9 @@ public class SalaryDto {
 
     private double minus;
     private double total;
+    private int month;
+    private int year;
+
 
     private Employee employee;
 

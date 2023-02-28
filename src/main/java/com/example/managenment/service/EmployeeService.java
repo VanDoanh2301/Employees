@@ -86,7 +86,8 @@ public interface EmployeeService {
 
     boolean existsByEmail(String email);
 
-    List<Employee> getByDepartmentId(Integer id);
+
+    Page<Employee> getByDepartmentId(Integer id, Pageable pageable);
 
     Employee findByEmail(String email);
 
@@ -97,6 +98,8 @@ public interface EmployeeService {
     void deleteId(Integer id);
 
     void deleteByEmployeeId(int id);
+
+    Page<Employee> findByNameContaining(String name, Pageable pageable);
 
 //    Employee saveEmployee(EmployeeDto employeeDto);
 }

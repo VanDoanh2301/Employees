@@ -193,9 +193,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepos.existsByEmail(email);
     }
 
+
     @Override
-    public List<Employee> getByDepartmentId(Integer id) {
-        return employeeRepos.getByDepartmentId(id);
+    public Page<Employee> getByDepartmentId(Integer id, Pageable pageable) {
+        return employeeRepos.getByDepartmentId(id, pageable);
 
     }
 //    @Override
@@ -280,6 +281,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteByEmployeeId(int id) {
          employeeRepos.deleteByEmployeeId(id);
+    }
+
+    @Override
+    public Page<Employee> findByNameContaining(String name, Pageable pageable) {
+        return employeeRepos.findByNameContaining(name, pageable);
     }
 
 }

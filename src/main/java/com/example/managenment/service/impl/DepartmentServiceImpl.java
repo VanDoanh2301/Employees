@@ -103,10 +103,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepos.existsByName(name);
     }
 
-    @Override
-    public List<Department> findByNameContaining(String name) {
-        return departmentRepos.findByNameContaining(name);
-    }
 
     @Override
     public Page<Department> findByNameContaining(String name, Pageable pageable) {

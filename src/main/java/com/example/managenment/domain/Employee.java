@@ -46,4 +46,9 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee")
     private Collection<Salary> salaries;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

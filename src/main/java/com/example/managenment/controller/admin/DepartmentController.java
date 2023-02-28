@@ -118,9 +118,17 @@ public class DepartmentController {
     }
 
     @GetMapping("/view/{departmentId}")
-    public String view(Model model,@PathVariable("departmentId") Integer departmentId) {
-        List<Employee> employees = employeeService.getByDepartmentId(departmentId);
-        model.addAttribute("employees", employees);
+    public String view(Model model,@PathVariable("departmentId") Integer departmentId
+            ,@RequestParam(value = "page") Optional<Integer> page
+            ,@RequestParam("size") Optional<Integer> size
+                       ) {
+        int currentPage = page.orElse(0);
+        int pageSize = size.orElse(3);
+        Pageable pageable = PageRequest.of(currentPage,pageSize);
+
+
+        Page<Employee> employeePage = employeeService.getByDepartmentId(departmentId,pageable);
+        model.addAttribute("employeePage", employeePage);
         return "admin/employees/list";
     }
 }

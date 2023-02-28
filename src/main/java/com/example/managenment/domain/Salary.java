@@ -27,6 +27,11 @@ public class Salary {
     @Column(name="total", length = 120, nullable = false)
     private double total;
 
+    @Column(name="month", length = 120, nullable = false)
+    private int month;
+    @Column(name="year", length = 120, nullable = false)
+    private int year;
+
     @ManyToOne
     @JoinColumn(name="employeeId")
     private Employee employee;

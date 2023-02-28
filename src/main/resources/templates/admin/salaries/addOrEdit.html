@@ -30,6 +30,12 @@
                     <div class="card-body">
 
                         <div class="form-group">
+                            <label for="employee" th:text="${emp.name}"></label>
+                            <input type="text" th:field="*{employee}"  th:value="${emp.employeeId}"
+                                   class="form-control"  id="employee" aria-describedby="employeeHid" placeholder="">
+                        </div>
+
+                        <div class="form-group">
                             <label >Salary ID:</label>
                             <input type="text" th:field="*{salaryId}"
                                    class="form-control"  id="departmentId" aria-describedby="departmentHid" placeholder="department">
@@ -53,11 +59,21 @@
                                    class="form-control"  id="minus" aria-describedby="minusHid" placeholder="">
                             <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
                         </div>
+
                         <div class="form-group">
-                            <label for="employee" th:text="${emp.name}"></label>
-                            <input type="hidden" th:field="*{employee}"  th:value="${emp.employeeId}"
-                                   class="form-control"  id="employee" aria-describedby="employeeHid" placeholder="">
+                            <label for="month">Month</label>
+                            <input type="text" th:field="*{month}"
+                                   class="form-control"  id="month" aria-describedby="monthHid" placeholder="">
+                            <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
                         </div>
+
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <input type="text" th:field="*{year}"
+                                   class="form-control"  id="year" aria-describedby="yearHid" placeholder="">
+                            <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
+                        </div>
+
 
 
                     </div>
