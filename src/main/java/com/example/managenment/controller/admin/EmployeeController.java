@@ -2,7 +2,9 @@ package com.example.managenment.controller.admin;
 
 import com.example.managenment.domain.Department;
 import com.example.managenment.domain.Employee;
+import com.example.managenment.domain.Role;
 import com.example.managenment.model.EmployeeDto;
+import com.example.managenment.repository.RoleRepository;
 import com.example.managenment.service.DepartmentService;
 import com.example.managenment.service.EmployeeService;
 import org.springframework.beans.BeanUtils;
@@ -27,11 +29,16 @@ public class EmployeeController {
     @Autowired
     private DepartmentService departmentService;
 
+    @Autowired
+    private RoleRepository roleRepos;
+
     @GetMapping("/add")
     public String add(Model model) {
         List<Department> departments=  departmentService.findAll();
+        List<Role> roles = roleRepos.findAll();
         model.addAttribute("departments",departments);
         model.addAttribute("employee",new EmployeeDto());
+        model.addAttribute("listRole",roles);
         return "admin/employees/addOrEdit";
     }
 //    @GetMapping("/edit/{employeeId}")

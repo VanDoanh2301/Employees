@@ -1,6 +1,7 @@
 package com.example.managenment.service;
 
 import com.example.managenment.domain.Employee;
+import com.example.managenment.model.EmployeeDto;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -84,4 +85,8 @@ public interface EmployeeService {
     boolean existsByName(String name);
 
     boolean existsByEmail(String email);
+
+    List<Employee> getByDepartmentId(Integer id);
+
+//    Employee saveEmployee(EmployeeDto employeeDto);
 }

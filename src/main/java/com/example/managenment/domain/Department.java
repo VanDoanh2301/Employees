@@ -1,13 +1,12 @@
 package com.example.managenment.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -23,4 +22,9 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private Collection<Employee> employees;
 
+    public Department(int departmentId, String name, String shortName) {
+        this.departmentId = departmentId;
+        this.name = name;
+        this.shortName = shortName;
+    }
 }

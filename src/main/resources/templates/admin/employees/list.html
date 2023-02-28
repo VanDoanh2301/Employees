@@ -37,6 +37,7 @@
                             <th>Phone</th>
                             <th>Address</th>
                             <th>Department</th>
+                            <th>Role</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -50,6 +51,8 @@
                             <td th:text="${employee.phone}"></td>
                             <td th:text="${employee.address}"></td>
                             <td th:text="${employee.department.getName()}"></td>
+                            <td th:text="${employee.roles}"></td>
+
                             <td>
                                 <a th:href="@{/templates/admin/departments/view}" class="btn btn-outline-info"><i class="fas fa-info    "></i></a>
                                 <a th:href="@{'/admin/employees/edit/' + ${employee.employeeId}}" class="btn btn-outline-warning"><i class="fas fa-edit    "></i></a>

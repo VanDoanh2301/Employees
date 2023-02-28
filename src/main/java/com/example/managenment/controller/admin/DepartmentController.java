@@ -1,8 +1,11 @@
 package com.example.managenment.controller.admin;
 
 import com.example.managenment.domain.Department;
+import com.example.managenment.domain.Employee;
 import com.example.managenment.model.DepartmentDto;
 import com.example.managenment.service.DepartmentService;
+import com.example.managenment.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,12 +24,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
+@Slf4j
 @Controller
-@RequestMapping("/admin/departments")
+@RequestMapping( "/admin/departments")
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping("/add")
     public String add(Model model) {
@@ -53,27 +58,31 @@ public class DepartmentController {
     public ModelAndView delete(ModelMap model,@PathVariable("departmentId") Integer departmentId) {
         departmentService.deleteById(departmentId);
         model.addAttribute("m","department is deleted");
-        return new ModelAndView("forward:/admin/departments/search",model);
+        return new ModelAndView("forward:/admin/departments",model);
     }
     @PostMapping("/saveOrUpdate")
-    public ModelAndView saveOrUpdate(ModelMap model, @ModelAttribute("department") DepartmentDto departmentDto, BindingResult result) {
+    public String saveOrUpdate(ModelMap model, @ModelAttribute("department") DepartmentDto departmentDto) {
         if(departmentService.existsByName(departmentDto.getName())){
             model.addAttribute("m","Name is variable");
-            return new ModelAndView("/admin/departments/addOrEdit",model);
+            return "/admin/departments/addOrEdit";
+        }
+        if(departmentDto.getDepartmentId() == 0) {
+            model.addAttribute("m","Not 0");
+            return "/admin/departments/addOrEdit";
         }
         Department entity = new Department();
         BeanUtils.copyProperties(departmentDto,entity);
         departmentService.save(entity);
         model.addAttribute("message","Department is save");
-        return new ModelAndView("forward:/admin/departments",model);
+        return "redirect:/admin/departments";
     }
-    @RequestMapping("")
-    public String list(ModelMap model) {
-        List<Department> departments=  departmentService.findAll();
-        model.addAttribute("departments",departments);
-        return "admin/departments/list";
-    }
-    @GetMapping("/search")
+//    @RequestMapping("")
+//    public String list(ModelMap model) {
+//        List<Department> departments=  departmentService.findAll();
+//        model.addAttribute("departments",departments);
+//        return "admin/departments/list";
+//    }
+    @GetMapping("")
     public String seacrch(ModelMap model
             ,@RequestParam(value = "name",required = false) String name
             ,@RequestParam(value = "page") Optional<Integer> page
@@ -104,6 +113,13 @@ public class DepartmentController {
         }
 
         model.addAttribute("departmentPage",resultPage);
-        return "admin/departments/search";
+        return "admin/departments/list";
+    }
+
+    @GetMapping("/view/{departmentId}")
+    public String view(Model model,@PathVariable("departmentId") Integer departmentId) {
+        List<Employee> employees = employeeService.getByDepartmentId(departmentId);
+        model.addAttribute("employees", employees);
+        return "admin/employees/list";
     }
 }

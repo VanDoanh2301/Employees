@@ -1,7 +1,10 @@
 package com.example.managenment.service.impl;
 
 import com.example.managenment.domain.Employee;
+import com.example.managenment.domain.Role;
+import com.example.managenment.model.EmployeeDto;
 import com.example.managenment.repository.EmployeeRepository;
+import com.example.managenment.repository.RoleRepository;
 import com.example.managenment.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -20,6 +24,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepos;
+
+    @Autowired
+    private RoleRepository RoleRepo;
 
     @Override
     public void flush() {
@@ -188,5 +195,67 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean existsByEmail(String email) {
         return employeeRepos.existsByEmail(email);
     }
+
+    @Override
+    public List<Employee> getByDepartmentId(Integer id) {
+        return employeeRepos.getByDepartmentId(id);
+
+    }
+//    @Override
+//    public Employee saveEmployee(EmployeeDto employeeDto) {
+//        List<String> roleDto = employeeDto.getRoles();
+//        List<Role> listRole = new ArrayList<>();
+//        roleDto.forEach(ro -> {
+//            switch (ro) {
+//                case "user": {
+//                    Role userRole = RoleRepo.findByName("USER");
+//                    if (userRole == null) {
+//                        userRole = new Role("USER");
+//                        RoleRepo.save(userRole);
+//                    }
+//                    listRole.add(userRole);
+//                    break;
+//                }
+//                case "manager": {
+//                    Role managerRole = RoleRepo.findByName("MANAGER");
+//                    if (managerRole == null) {
+//                        managerRole = new Role("MANAGER");
+//                        RoleRepo.save(managerRole);
+//                    }
+//                    listRole.add(managerRole);
+//                    break;
+//                }
+//                case "admin": {
+//                    Role managerRole = RoleRepo.findByName("ADMIN");
+//                    if (managerRole == null) {
+//                        managerRole = new Role("ADMIN");
+//                        RoleRepo.save(managerRole);
+//                    }
+//                    listRole.add(managerRole);
+//                    break;
+//                }
+//            }
+//        });
+//
+//        Employee employee = Employee.builder()
+//                .employeeId(employeeDto.getEmployeeId())
+//                .name(employeeDto.getName())
+//                .email(employeeDto.getEmail())
+//                .password(employeeDto.getPassword())
+//                .phone(employeeDto.getPhone())
+//                .department(employeeDto.getDepartment())
+//                .roles(listRole)
+//                .build();
+////         List<Role> roles = user.getRoles();
+////        Collection<Privilege> privileges = new ArrayList<>();
+////        privileges.add(privilege);
+////        privileges.add(privilege1);
+////        roles.forEach(role -> {
+////            role.setPrivileges(privileges);
+////        });
+//
+//        return employeeRepos.save(employee);
+//
+//    }
 
 }

@@ -21,7 +21,7 @@ class ManagenmentApplicationTests {
 
     @Test
     void contextLoads() {
-        repo.findById(2);
+        repo.getByDepartmentId(12);
     }
 
 }
