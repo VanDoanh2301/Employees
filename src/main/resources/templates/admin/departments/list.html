@@ -1,5 +1,8 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/main_layout}"
+>
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -13,6 +16,7 @@
 
 </head>
 <body>
+<article layout:fragment="content">
 <main class="container">
     <header class="row">
     </header>
@@ -122,6 +126,7 @@
     </section>
     <footer class="row"></footer>
 </main>
+</article>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

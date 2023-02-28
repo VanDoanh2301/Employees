@@ -7,6 +7,7 @@ import com.example.managenment.model.EmployeeDto;
 import com.example.managenment.repository.RoleRepository;
 import com.example.managenment.service.DepartmentService;
 import com.example.managenment.service.EmployeeService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -67,11 +68,11 @@ public class EmployeeController {
 
         return new ModelAndView("forward:/admin/employees",model);
     }
-    @GetMapping("/delete/{departmentId}")
-    public ModelAndView delete(ModelMap model,@PathVariable("departmentId") Integer departmentId) {
-        employeeService.deleteById(departmentId);
+    @GetMapping("/delete/{employeeId}")
+    public String delete(Model model,@PathVariable("employeeId") Integer employeeId) {
+        employeeService.deleteByEmployeeId(employeeId);
         model.addAttribute("m","department is deleted");
-        return new ModelAndView("forward:/admin/employees",model);
+        return "forward:/admin/employees";
     }
     @PostMapping("/saveOrUpdate")
     public ModelAndView saveOrUpdate(ModelMap model, @ModelAttribute("department") EmployeeDto employeeDto, BindingResult result) {

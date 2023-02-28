@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/main_layout}"
 >
 <head>
     <title>Title</title>
@@ -13,6 +14,7 @@
 
 </head>
 <body>
+<article layout:fragment="content">
 <main class="container">
     <header class="row">
     </header>
@@ -22,9 +24,6 @@
                 <div class="card-header" >
                     <h2>List of Department</h2>
                 </div>
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Logout" />
-                </form>
                 <div class="card-body">
                     <div th:if="${message !=null}" class="alert alert-primary" role="alert">
                         <i>[[${message}]]</i>
@@ -80,6 +79,7 @@
     </section>
     <footer class="row"></footer>
 </main>
+</article>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,8 +1,6 @@
 package com.example.managenment.service.impl;
 
 import com.example.managenment.domain.Employee;
-import com.example.managenment.domain.Role;
-import com.example.managenment.model.EmployeeDto;
 import com.example.managenment.repository.EmployeeRepository;
 import com.example.managenment.repository.RoleRepository;
 import com.example.managenment.service.EmployeeService;
@@ -14,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -256,6 +253,33 @@ public class EmployeeServiceImpl implements EmployeeService {
 //
 //        return employeeRepos.save(employee);
 //
+
 //    }
+
+
+    @Override
+    public Employee findByEmail(String email) {
+        return employeeRepos.findByEmail(email);
+    }
+
+    @Override
+    public Employee getByName(String username) {
+        return employeeRepos.getByName(username);
+    }
+
+    @Override
+    public Employee findId(Integer id) {
+        return employeeRepos.findId(id);
+    }
+
+    @Override
+    public void deleteId(Integer id) {
+        employeeRepos.deleteId(id);
+    }
+
+    @Override
+    public void deleteByEmployeeId(int id) {
+         employeeRepos.deleteByEmployeeId(id);
+    }
 
 }

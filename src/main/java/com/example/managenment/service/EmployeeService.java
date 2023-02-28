@@ -88,5 +88,15 @@ public interface EmployeeService {
 
     List<Employee> getByDepartmentId(Integer id);
 
+    Employee findByEmail(String email);
+
+    Employee getByName(String username);
+
+    Employee findId(Integer id);
+
+    void deleteId(Integer id);
+
+    void deleteByEmployeeId(int id);
+
 //    Employee saveEmployee(EmployeeDto employeeDto);
 }

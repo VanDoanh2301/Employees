@@ -19,7 +19,7 @@ public class Department {
 
     @Column(name = "short_Name",unique = true,columnDefinition = "nvarchar(100) not null")
     private  String shortName;
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
     private Collection<Employee> employees;
 
     public Department(int departmentId, String name, String shortName) {

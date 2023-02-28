@@ -11,4 +11,5 @@ public class Login {
     public String viewLoginPage() {
         return "admin/login";
     }
+
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee {
     @Id
     @Column(name="employeeId")
@@ -37,7 +37,7 @@ public class Employee {
     @JoinColumn(name="department_Id")
     private Department department;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "employees_roles",
             joinColumns = @JoinColumn(name = "user_Id",nullable = false),
             inverseJoinColumns = @JoinColumn(name = "role_Id")
