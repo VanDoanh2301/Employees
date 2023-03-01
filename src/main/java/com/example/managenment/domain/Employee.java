@@ -12,10 +12,10 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "employees")
+@Table(name = "employee")
 public class Employee {
     @Id
-    @Column(name="employeeId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int employeeId;
 
     @Column(name="name")
@@ -34,7 +34,7 @@ public class Employee {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name="department_Id")
+    @JoinColumn(name="departmentId")
     private Department department;
 
     @ManyToMany(fetch = FetchType.EAGER)

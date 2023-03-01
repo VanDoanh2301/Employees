@@ -28,13 +28,13 @@
                     </div>
                     <div class="card-body">
 
-                        <div class="form-group">
-                            <label >Employee ID:</label>
-                            <input type="hidden" th:field="*{edit}" >
-                            <input type="text" th:field="*{employeeId}"
-                                   class="form-control"  id="employeeId" aria-describedby="employeeHid" placeholder="employeeId">
-                            <small th:if="${#fields.hasErrors('employeeId')}" id="departmentHid" class="form-text text-muted">Department id is required</small>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label >Employee ID:</label>-->
+<!--                            <input type="hidden" th:field="*{edit}" >-->
+<!--                            <input type="text" th:field="*{employeeId}"-->
+<!--                                   class="form-control"  id="employeeId" aria-describedby="employeeHid" placeholder="employeeId">-->
+<!--                            <small th:if="${#fields.hasErrors('employeeId')}" id="departmentHid" class="form-text text-muted">Department id is required</small>-->
+<!--                        </div>-->
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" th:field="*{name}"
@@ -91,7 +91,7 @@
 
                         </button>
                         <a th:href="@{/admin/employees}" class="btn btn-success">List Employees</a>
-                        <button type="reset"  class="btn btn-secondary">Reset</button>
+                        <button th:href="@{/admin/employees/addOrEdit}" type="reset"  class="btn btn-secondary">Reset</button>
                     </div>
                 </div>
             </form>

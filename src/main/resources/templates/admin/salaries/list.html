@@ -22,7 +22,7 @@
         <div class="col mt-4">
             <div class="card">
                 <div class="card-header" >
-                    <h2>List of Department</h2>
+                    <h2>Danh sách lương nhân viên</h2>
                 </div>
                 <div class="card-body">
                     <div th:if="${message !=null}" class="alert alert-primary" role="alert">
@@ -54,14 +54,13 @@
                         <thead class="thead-inverse">
                         <tr>
                             <th>STT</th>
-
-                            <th>count</th>
-                            <th>minus</th>
-                            <th>bonus</th>
-                            <th>total</th>
-                            <th>month</th>
-                            <th>year</th>
-                            <th>Name</th>
+                            <th>Hệ số lương</th>
+                            <th>Tiền phạt</th>
+                            <th>Tiền thưởng</th>
+                            <th>Tổng</th>
+                            <th>Tháng </th>
+                            <th>Năm</th>
+                            <th>Tên nhân viên</th>
 
 
 
@@ -70,7 +69,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="salary,state: ${salaryPage.content}">
-                            <td th:text="${state.index}"></td>
+                            <td th:text="${state.index + 1 }"></td>
                             <td th:text="${salary.count}"></td>
                             <td th:text="${salary.minus}"></td>
                             <td th:text="${salary.bonus}"></td>

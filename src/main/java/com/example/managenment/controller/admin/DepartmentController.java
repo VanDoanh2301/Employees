@@ -67,10 +67,6 @@ public class DepartmentController {
             model.addAttribute("m","Name is variable");
             return "/admin/departments/addOrEdit";
         }
-        if(departmentDto.getDepartmentId() == 0) {
-            model.addAttribute("m","Not 0");
-            return "/admin/departments/addOrEdit";
-        }
         Department entity = new Department();
         BeanUtils.copyProperties(departmentDto,entity);
         departmentService.save(entity);
@@ -121,12 +117,10 @@ public class DepartmentController {
     public String view(Model model,@PathVariable("departmentId") Integer departmentId
             ,@RequestParam(value = "page") Optional<Integer> page
             ,@RequestParam("size") Optional<Integer> size
-                       ) {
+    ) {
         int currentPage = page.orElse(0);
         int pageSize = size.orElse(3);
         Pageable pageable = PageRequest.of(currentPage,pageSize);
-
-
         Page<Employee> employeePage = employeeService.getByDepartmentId(departmentId,pageable);
         model.addAttribute("employeePage", employeePage);
         return "admin/employees/list";

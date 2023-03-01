@@ -7,19 +7,20 @@ import java.util.Collection;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "departments")
 public class Department {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  int departmentId;
-    @Column(name = "department_Name",unique = true,columnDefinition = "nvarchar(100) not null")
+    @Column(name = "departmentName")
     private  String name;
 
-    @Column(name = "short_Name",unique = true,columnDefinition = "nvarchar(100) not null")
+    @Column(name = "shortName")
     private  String shortName;
-    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "department")
     private Collection<Employee> employees;
 
     public Department(int departmentId, String name, String shortName) {

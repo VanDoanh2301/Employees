@@ -24,7 +24,7 @@
         <div class="col mt-4">
             <div class="card">
                 <div class="card-header">
-                    <h2>List of Department</h2>
+                    <h2>Danh sách phòng ban</h2>
                 </div>
                 <div class="card-body">
                     <div th:if="${message !=null}" class="alert alert-primary" role="alert">
@@ -62,15 +62,15 @@
                         <thead class="thead-inverse">
                         <tr>
                             <th>STT</th>
-                            <th>Short Name</th>
-                            <th>Name</th>
-                            <th>Department ID</th>
+                            <th>Biệt dang</th>
+                            <th>Phòng ban</th>
+                            <th>Id phòng ban</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="department,state: ${departmentPage.content}">
-                            <td th:text="${state.index}"></td>
+                            <td th:text="${state.index + 1}"></td>
                             <td th:text="${department.shortName}"></td>
                             <td th:text="${department.name}"></td>
                             <td th:text="${department.departmentId}"></td>

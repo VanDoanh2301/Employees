@@ -29,15 +29,15 @@
                     </div>
                     <div class="card-body">
 
+<!--                        <div class="form-group">-->
+<!--                            <label >Department ID:</label>-->
+<!--                            <input type="hidden" th:field="*{edit}" >-->
+<!--                            <input type="text" th:field="*{departmentId}"-->
+<!--                                   class="form-control"  id="departmentId" aria-describedby="departmentHid" placeholder="department">-->
+<!--                            <small th:if="${#fields.hasErrors('departmentId')}" id="departmentHid" class="form-text text-muted">Department id is required</small>-->
+<!--                        </div>-->
                         <div class="form-group">
-                            <label >Department ID:</label>
-                            <input type="hidden" th:field="*{edit}" >
-                            <input type="text" th:field="*{departmentId}"
-                                   class="form-control"  id="departmentId" aria-describedby="departmentHid" placeholder="department">
-                            <small th:if="${#fields.hasErrors('departmentId')}" id="departmentHid" class="form-text text-muted">Department id is required</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="shortName">Name</label>
+                            <label for="shortName">Short Name</label>
                             <input type="text" th:field="*{shortName}"
                                    class="form-control"  id="shortName" aria-describedby="shortnameHid" placeholder="Department Short Name">
                         </div>
@@ -46,7 +46,6 @@
                             <label for="name">Name</label>
                             <input type="text" th:field="*{name}"
                                    class="form-control"  id="name" aria-describedby="nameHid" placeholder="Department Name">
-                            <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
                         </div>
                     </div>
                     <div class="card-footer text-muted">
@@ -55,7 +54,7 @@
                          <span th:unless="${department.edit}">Save</span>
                         </button>
                         <a th:href="@{/admin/departments}" class="btn btn-success">List Department</a>
-                        <button type="reset"  class="btn btn-secondary">Reset</button>
+                        <button th:href="@{/admin/departments/addOrEdit}" type="reset"  class="btn btn-secondary">Reset</button>
                     </div>
                 </div>
             </form>
