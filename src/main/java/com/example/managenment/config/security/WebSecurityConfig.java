@@ -68,9 +68,8 @@ public class WebSecurityConfig {
                 .authorizeRequests().requestMatchers("/login").permitAll()
                 .requestMatchers("/stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css").permitAll()
                 .requestMatchers("/use.fontawesome.com/releases/v5.1.1/css/all.css").permitAll()
+                .requestMatchers("/entryPoint").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .exceptionHandling().accessDeniedPage("/404")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -83,9 +82,14 @@ public class WebSecurityConfig {
                 .and()
                 .httpBasic()
         ;
+        //http.exceptionHandling().accessDeniedHandler((request, response, accessDeniedException) -> response.setStatus(HttpStatus.FORBIDDEN.value()));
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(jwtTokenFilterHeader, UsernamePasswordAuthenticationFilter.class);
+        http.exceptionHandling().accessDeniedHandler(new AccessDeniedExceptionHandler());
+        http.exceptionHandling()
+                .authenticationEntryPoint(jwtEntryPoint);
+
 
         return http.build();
     }

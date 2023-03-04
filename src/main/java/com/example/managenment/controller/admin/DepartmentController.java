@@ -40,7 +40,9 @@ public class DepartmentController {
 
         return "admin/departments/addOrEdit";
     }
+
     @GetMapping("/edit/{departmentId}")
+    @PreAuthorize("hasAuthority('EDIT_EMPLOYEE')")
     public ModelAndView edit(ModelMap model, @PathVariable("departmentId") Integer departmentId) {
         Optional<Department> op = departmentService.findById(departmentId);
         DepartmentDto departmentDto = new DepartmentDto();
