@@ -61,13 +61,14 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         List<Privilege> adm = Arrays.asList(readUser,signin,signup,remove,add,admin,edit);
 
         Role admi = createRoleIfNotFound("ADMIN",adm );
-        Role employee = createRoleIfNotFound("EMPLOYEE",empl);
-        Role manager = createRoleIfNotFound("MANAGER", mana);
+        Role employee = createRoleIfNotFound("NHÂN VIÊN",empl);
+        Role manager = createRoleIfNotFound("TRƯỞNG PHÒNG", mana);
 
-        Department GD = createDepartmentIfNotFound(1,"GD", "PHONG GIAM DOC");
-        Department NS = createDepartmentIfNotFound(2,"NS", "PHONG NHAN SU");
-        Department P1 = createDepartmentIfNotFound(3,"P1", "PHONG PHONG 1");
-        Department P2 = createDepartmentIfNotFound(4,"P2", "PHONG PHONG 2");
+        Department GD = createDepartmentIfNotFound(1,"PHONG GIAM DOC", "GD");
+        Department P1 = createDepartmentIfNotFound(3,"PHONG PHONG 1", "P1");
+        Department P2 = createDepartmentIfNotFound(4,"PHONG PHONG 2", "P2");
+        Department P3 = createDepartmentIfNotFound(4,"PHONG PHONG 3", "P3");
+        Department P4 = createDepartmentIfNotFound(4,"PHONG PHONG 4", "P4");
 
         Employee Admin = Employee.builder()
                 .employeeId(1)

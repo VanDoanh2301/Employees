@@ -57,8 +57,7 @@ public class EmployeeController {
         return "admin/employees/addOrEdit";
     }
 @GetMapping("/edit/{employeeId}")
-//@PreAuthorize("hasAnyAuthority('EDIT_EMPLOYEE')")
-
+@PreAuthorize("hasAnyAuthority('EDIT_EMPLOYEE')")
     public ModelAndView edit(ModelMap model, @PathVariable("employeeId") Integer employeeId) {
         Optional<Employee> op = employeeService.findById(employeeId);
         EmployeeDto employeeDto = new EmployeeDto();
@@ -68,8 +67,10 @@ public class EmployeeController {
             employeeDto.setEdit(true);
             model.addAttribute("employee",employeeDto);
             List<Department> departments=  departmentService.findAll();
+            List<Role> roles = roleRepos.findAll();
             model.addAttribute("departments",departments);
-            return new ModelAndView("/admin/employees/addOrEdit",model);
+            model.addAttribute("listRole",roles);
+            return new ModelAndView("/admin/employees/updateEmployee",model);
         }
         model.addAttribute("message","Employee is null");
 
@@ -93,6 +94,15 @@ public class EmployeeController {
         }
         employeeDto.setPassword(encoder().encode(employeeDto.getPassword()));
         Employee entity = new Employee();
+        BeanUtils.copyProperties(employeeDto,entity);
+        employeeService.save(entity);
+        model.addAttribute("message","employees is save");
+        return "redirect:/admin/employees";
+    }
+    @PostMapping("/updateEmployee")
+    public String Update(ModelMap model, @ModelAttribute("department") EmployeeDto employeeDto) {
+        employeeDto.setPassword(encoder().encode(employeeDto.getPassword()));
+        Employee entity = employeeService.findId(employeeDto.getEmployeeId());
         BeanUtils.copyProperties(employeeDto,entity);
         employeeService.save(entity);
         model.addAttribute("message","employees is save");

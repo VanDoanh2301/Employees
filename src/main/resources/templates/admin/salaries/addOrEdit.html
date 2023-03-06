@@ -35,12 +35,12 @@
                                    class="form-control"  id="employee" aria-describedby="employeeHid" placeholder="">
                         </div>
 
-                        <div class="form-group">
-                            <label >Salary ID:</label>
-                            <input type="text" th:field="*{salaryId}"
-                                   class="form-control"  id="departmentId" aria-describedby="departmentHid" placeholder="department">
-                            <small th:if="${#fields.hasErrors('salaryId')}" id="salaryIdHid" class="form-text text-muted">Department id is required</small>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label >Salary ID:</label>-->
+<!--                            <input type="text" th:field="*{salaryId}"-->
+<!--                                   class="form-control"  id="departmentId" aria-describedby="departmentHid" placeholder="department">-->
+<!--                            <small th:if="${#fields.hasErrors('salaryId')}" id="salaryIdHid" class="form-text text-muted">Department id is required</small>-->
+<!--                        </div>-->
                         <div class="form-group">
                             <label for="count">Count</label>
                             <input type="text" th:field="*{count}"
@@ -49,20 +49,20 @@
 
                         <div class="form-group">
                             <label for="bonus">Bonus</label>
-                            <input type="text" th:field="*{bonus}"
+                            <input type="number" th:field="*{bonus}"
                                    class="form-control"  id="bonus" aria-describedby="bonusHid" placeholder="">
                         </div>
 
                         <div class="form-group">
                             <label for="minus">Minus</label>
-                            <input type="text" th:field="*{minus}"
+                            <input type="number" th:field="*{minus}"
                                    class="form-control"  id="minus" aria-describedby="minusHid" placeholder="">
                             <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
                         </div>
 
                         <div class="form-group">
                             <label for="month">Month</label>
-                            <input type="text" th:field="*{month}"
+                            <input type="number" th:field="*{month}"
                                    class="form-control"  id="month" aria-describedby="monthHid" placeholder="">
                             <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
                         </div>

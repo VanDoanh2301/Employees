@@ -14,6 +14,8 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
+
+    Page<Employee> findByNameContaining(String name, Pageable pageable);
     public boolean existsByName(String name);
     public  boolean existsByEmail(String email);
     @Query(value = "select *from employee where department_id=?1", nativeQuery = true)
@@ -38,6 +40,6 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
      @Transactional
      public void deleteByEmployeeId(int id);
 
-    Page<Employee> findByNameContaining(String name, Pageable pageable);
+
 
 }

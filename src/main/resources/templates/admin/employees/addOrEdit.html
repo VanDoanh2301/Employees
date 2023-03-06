@@ -24,7 +24,8 @@
             <form th:action="@{/admin/employees/saveOrUpdate}" method="post" th:object="${employee}">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Add new Employee</h2>
+                        <h2 th:unless="${employee.edit}">Thêm nhân viên</h2>
+                        <h2 th:if="${employee.edit}">Chỉnh sửa</h2>
                     </div>
                     <div class="card-body">
 
@@ -71,6 +72,7 @@
                             </th:block>
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label class="col-form-label col-sm-4">Department: </label>

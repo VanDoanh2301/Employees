@@ -51,13 +51,14 @@ public class DepartmentController {
             BeanUtils.copyProperties(department,departmentDto);
             departmentDto.setEdit(true);
             model.addAttribute("department",departmentDto);
-            return new ModelAndView("/admin/departments/addOrEdit",model);
+            return new ModelAndView("/admin/departments/updateDepartment",model);
         }
          model.addAttribute("message","Department is null");
 
         return new ModelAndView("forward:/admin/departments",model);
     }
     @GetMapping("/delete/{departmentId}")
+    @PreAuthorize("hasAuthority('EDIT_EMPLOYEE')")
     public ModelAndView delete(ModelMap model,@PathVariable("departmentId") Integer departmentId) {
         departmentService.deleteById(departmentId);
         model.addAttribute("m","department is deleted");
@@ -74,6 +75,14 @@ public class DepartmentController {
         departmentService.save(entity);
         model.addAttribute("message","Department is save");
         return "redirect:/admin/departments";
+    }
+    @PostMapping("/updateDepartment")
+    public ModelAndView Update(ModelMap model, @ModelAttribute("department") DepartmentDto departmentDto) {
+        Department entity = departmentService.findId(departmentDto.getDepartmentId());
+        BeanUtils.copyProperties(departmentDto,entity);
+        departmentService.save(entity);
+        model.addAttribute("message","Department is save");
+        return new ModelAndView("forward:/admin/departments", model);
     }
 //    @RequestMapping("")
 //    public String list(ModelMap model) {

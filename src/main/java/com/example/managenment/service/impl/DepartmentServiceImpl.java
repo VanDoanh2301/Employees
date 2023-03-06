@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -107,6 +108,17 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Page<Department> findByNameContaining(String name, Pageable pageable) {
         return departmentRepos.findByNameContaining(name, pageable);
+    }
+
+    @Override
+    @Query("SELECT e FROM Department e where e.departmentId=?1")
+    public Department findId(Integer id) {
+        return departmentRepos.findId(id);
+    }
+
+    @Override
+    public boolean existsByShortName(String shortName) {
+        return departmentRepos.existsByShortName(shortName);
     }
 
 }

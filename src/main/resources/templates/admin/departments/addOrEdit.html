@@ -25,7 +25,8 @@
             <form th:action="@{/admin/departments/saveOrUpdate}" method="post" th:object="${department}" >
                 <div class="card">
                     <div class="card-header">
-                        <h2>Add new Category</h2>
+                        <h2 th:unless="${department.edit}">Thêm phòng ban</h2>
+                        <h2 th:if="${department.edit}">Chỉnh sửa phòng ban</h2>
                     </div>
                     <div class="card-body">
 

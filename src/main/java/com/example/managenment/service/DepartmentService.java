@@ -4,6 +4,7 @@ import com.example.managenment.domain.Department;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,4 +51,8 @@ public interface DepartmentService {
     Page<Department> findByNameContaining(String name, Pageable pageable);
 
 
+    @Query("SELECT e FROM Department e where e.departmentId=?1")
+    Department findId(Integer id);
+
+    boolean existsByShortName(String shortName);
 }

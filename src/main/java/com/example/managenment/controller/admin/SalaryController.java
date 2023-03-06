@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,6 +35,7 @@ public class SalaryController {
     private EmployeeRepository employeeRepo;
 
     @GetMapping("/add/{employeeId}")
+    @PreAuthorize("hasAuthority('EDIT_EMPLOYEE')")
     public String add(Model model, @PathVariable("employeeId") Integer employeeId) {
         Employee employee =   employeeRepo.findId(employeeId);
         model.addAttribute("emp",employee);
