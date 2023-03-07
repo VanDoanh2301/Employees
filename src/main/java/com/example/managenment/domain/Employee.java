@@ -44,7 +44,7 @@ public class Employee {
     )
     private List<Role> roles;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Collection<Salary> salaries;
 
     @Override

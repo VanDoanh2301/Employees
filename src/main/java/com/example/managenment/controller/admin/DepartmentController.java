@@ -61,7 +61,7 @@ public class DepartmentController {
     @PreAuthorize("hasAuthority('EDIT_EMPLOYEE')")
     public ModelAndView delete(ModelMap model,@PathVariable("departmentId") Integer departmentId) {
         departmentService.deleteById(departmentId);
-        model.addAttribute("m","department is deleted");
+        model.addAttribute("delete","department is deleted");
         return new ModelAndView("forward:/admin/departments",model);
     }
     @PostMapping("/saveOrUpdate")
@@ -92,6 +92,7 @@ public class DepartmentController {
 //    }
     @GetMapping("")
     public String seacrch(ModelMap model
+            ,@ModelAttribute("delete") String delete
             ,@RequestParam(value = "name",required = false) String name
             ,@RequestParam(value = "page") Optional<Integer> page
             ,@RequestParam("size") Optional<Integer> size) {
@@ -118,8 +119,9 @@ public class DepartmentController {
             }
             List<Integer> pageNumbers = IntStream.rangeClosed(start,end).boxed().collect(Collectors.toList());
             model.addAttribute("pageNumbers",pageNumbers);
-        }
 
+        }
+        model.addAttribute("delete",delete);
         model.addAttribute("departmentPage",resultPage);
         return "admin/departments/list";
     }

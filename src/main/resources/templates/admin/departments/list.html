@@ -27,8 +27,8 @@
                     <h2>Danh sách phòng ban</h2>
                 </div>
                 <div class="card-body">
-                    <div th:if="${message !=null}" class="alert alert-primary" role="alert">
-                        <i>[[${message}]]</i>
+                    <div th:unless="${delete !=null}" class="alert alert-primary" role="alert">
+                        <i>Da xoa</i>
                     </div>
 
                     <div class="row mt-2 mb-2">
@@ -62,7 +62,7 @@
                         <thead class="thead-inverse">
                         <tr>
                             <th>STT</th>
-                            <th>Biệt dang</th>
+                            <th>Nhóm</th>
                             <th>Phòng ban</th>
                             <th>Id phòng ban</th>
                             <th></th>

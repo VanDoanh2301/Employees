@@ -13,7 +13,7 @@
 </head>
 <body>
 <article layout:fragment="content">
-<div class="container-fluid text-center">
+<div class="container-fluid text-center col-6 offset-3 mt-4">
     <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
 
         <div th:if="${param.error}">

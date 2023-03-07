@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
     <style>
         body {
             margin: 0;
@@ -39,13 +42,13 @@
 <body>
 <section>
     <div class="topnav">
-        <a class="active" th:href="@{/admin/departments}">Employee Manager</a>
-        <a th:href="@{/admin/departments}">Department</a>
-        <a th:href="@{/admin/employees}">Employee</a>
-        <a th:href="@{/admin/salaries}">Salary</a>
+        <a class="active" th:href="@{/admin/departments}">Trang chủ</a>
+        <a th:href="@{/admin/departments}">Phòng ban</a>
+        <a th:href="@{/admin/employees}">Nhân viên</a>
+        <a th:href="@{/admin/salaries}">Lương</a>
         <div class="topnav-right">
             <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Logout" />
+                <input type="submit" value="Đăng xuất" />
             </form>
         </div>
     </div>

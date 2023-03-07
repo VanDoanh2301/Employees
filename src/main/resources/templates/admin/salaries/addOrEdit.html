@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label for="employee" th:text="${emp.name}"></label>
                             <input type="text" th:field="*{employee}"  th:value="${emp.employeeId}"
-                                   class="form-control"  id="employee" aria-describedby="employeeHid" placeholder="">
+                                   class="form-control"  id="employee" aria-describedby="employeeHid" th:placeholder="${emp.employeeId}">
                         </div>
 
 <!--                        <div class="form-group">-->
@@ -43,19 +43,19 @@
 <!--                        </div>-->
                         <div class="form-group">
                             <label for="count">Count</label>
-                            <input type="text" th:field="*{count}"
+                            <input type="number" th:field="*{count}"
                                    class="form-control"  id="count" aria-describedby="countHid" placeholder="">
                         </div>
 
                         <div class="form-group">
                             <label for="bonus">Bonus</label>
-                            <input type="number" th:field="*{bonus}"
+                            <input type="text" th:field="*{bonus}"
                                    class="form-control"  id="bonus" aria-describedby="bonusHid" placeholder="">
                         </div>
 
                         <div class="form-group">
                             <label for="minus">Minus</label>
-                            <input type="number" th:field="*{minus}"
+                            <input type="text" th:field="*{minus}"
                                    class="form-control"  id="minus" aria-describedby="minusHid" placeholder="">
                             <small class="form-text text-muted" th:if="${m!=null}">[[${m}]] </small>
                         </div>
